@@ -24,9 +24,9 @@ let app = express();
 // and uncolored for all other codes.
 app.use(logger("dev"));
 //Connecting to MongoDB... If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/News-scraper";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 
 
@@ -64,7 +64,7 @@ app.get("/", function(req,res){
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
-  axios.get("https://www.nytimes.com/").then(function(response) {
+  axios.get("http://www.echojs.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
