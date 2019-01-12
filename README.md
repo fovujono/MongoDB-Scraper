@@ -7,4 +7,4 @@ express, express-handlebars, mongoose, cheerio,axios. The app scrapes articles f
 
 * You can also save articles for later!
 
-* Deployed [site](https://mongo-scraper-jct.herokuapp.com/)
+## [Deployed site](https://mongo-scraper-jct.herokuapp.com/)
