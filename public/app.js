@@ -7,16 +7,6 @@ $.getJSON("/articles", function(data) {
   }
 });
 
-//Scrape button
-$("#scrape").on("click", function() {
-  $.ajax({
-      method: "GET",
-      url: "/scrape",
-  }).done(function(data) {        
-      window.location = "/"
-  })
-});
-
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
@@ -81,3 +71,37 @@ $(document).on("click", "#savenote", function() {
   $("#bodyinput").val("");
 });
 
+//Scrape button
+$("#scrape").on("click", function() {
+  $.ajax({
+      method: "GET",
+      url: "/scrape",
+  }).done(function(data) {        
+      window.location = "/"
+  })
+});
+
+
+// Clear button
+$("#clear").on("click",function(){
+  $.ajax({
+      method: "DELETE",
+      url: "/clear",
+  }).done(function(data) {
+      console.log(data)
+      window.location = "/"
+  })
+})
+
+
+//Delete Article button
+$(".delete").on("click", function(event) {
+  event.preventDefault()
+  var postId = $(this).attr("post-id");
+  $.ajax({
+      method: "POST",
+      url: "/delete/" + postId
+  }).done(function(data) {
+      window.location = "/saved"
+  })
+});
